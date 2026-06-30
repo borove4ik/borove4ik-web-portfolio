@@ -93,7 +93,7 @@ function StackIcon({ item, index }: { item: StackItem; index: number }) {
           aria-hidden="true"
         />
       </div>
-      <span className="text-[11px] text-muted-foreground/60 group-hover:text-muted-foreground transition-colors">
+      <span className="text-base text-muted-foreground/60 group-hover:text-muted-foreground transition-colors">
         {item.name}
       </span>
     </motion.div>
@@ -136,16 +136,13 @@ function SectionHeader() {
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="mb-12"
+      className="mb-12 "
     >
-      <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-3">
-        Stack
-      </p>
       <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
-        Technologies & Tools
+      Stack
       </h2>
-      <p className="mt-3 text-muted-foreground text-sm leading-relaxed max-w-md">
-        Tools I work with daily and technologies I reach for when building products.
+      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md">
+      Technologies & Tools
       </p>
     </motion.div>
   )

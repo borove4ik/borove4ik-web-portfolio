@@ -7,10 +7,10 @@ import { RippleBackground } from "@/components/shared/RippleBackground"
 const NAME = "Denis Borovets"
 const ROLE = "Frontend Developer"
 const LOCATION = "Kostanay, Kazakhstan"
-const CV_URL = "/cv.pdf"
+const CV_URL = "/frontend__Borovets.pdf"
 const CONTACTS = {
   github: "https://github.com/yourhandle",
-  linkedin: "https://linkedin.com/in/yourhandle",
+  linkedin: "https://www.linkedin.com/in/borove4ik",
   telegram: "https://t.me/yourhandle",
   email: "mailto:you@email.com",
 }
@@ -118,7 +118,7 @@ export function HeroSection() {
         >
           {/* Статус / локация */}
           <motion.div variants={item} className="flex items-center gap-2">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground border border-border/50 rounded-full px-3 py-1">
+            <span className="flex items-center gap-1.5 text-lg text-muted-foreground border border-border/50 rounded-full px-3 py-1">
               <span className="relative flex size-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full size-1.5 bg-green-500" />
@@ -126,7 +126,7 @@ export function HeroSection() {
               Available for work
             </span>
             {LOCATION && (
-              <span className="flex items-center gap-1 text-xs text-muted-foreground/60">
+              <span className="flex items-center gap-1 text-lg text-muted-foreground/60">
                 <PinIcon />
                 {LOCATION}
               </span>
@@ -157,7 +157,7 @@ export function HeroSection() {
             <a
               href={CONTACTS.email}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-                bg-foreground text-background text-sm font-medium
+                bg-foreground text-background text-base font-medium
                 hover:opacity-90 active:scale-[0.98] transition-all duration-150"
             >
               <MessageIcon />
@@ -168,7 +168,7 @@ export function HeroSection() {
               href={CV_URL}
               download
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-                border border-border/60 text-foreground text-sm font-medium
+                border border-border/60 text-foreground text-base font-medium
                 hover:bg-muted/60 active:scale-[0.98] transition-all duration-150"
             >
               <DownloadIcon />

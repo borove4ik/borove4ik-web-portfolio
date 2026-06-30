@@ -24,7 +24,7 @@ export const projects: Project[] = [
     title: "Rent System",
     description:
       "Система учёта аренды — панель управления для отслеживания арендаторов, объектов и платежей.",
-    tags: ["JavaScript", "CSS"],
+    tags: ["Vue.js", "Vite", "Pinia", "Bootstrap"],
     github: "https://github.com/borove4ik/control-panel",
     status: "wip",
   },

@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-jetbrains-mono)", "sans-serif"],
+      },
       keyframes: {
         marquee: {
           "0%":   { transform: "translateX(0%)" },

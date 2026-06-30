@@ -9,6 +9,10 @@ const ITEMS = [
   "Always learning",
   "Clean code",
   "Open to work",
+  "Creativity",
+  "Empathy",
+  "Team Work",
+  "Problem Solving"
 ]
 
 const SEPARATOR = "✦"
@@ -28,7 +32,7 @@ export function Marquee() {
 
   return (
     <div
-      className="relative w-full overflow-hidden border-y border-border/40 py-4"
+      className="relative w-full overflow-hidden  py-4 pt-1"
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
@@ -43,13 +47,12 @@ export function Marquee() {
         {repeated.map((item, i) => (
           <span
             key={i}
-            className="flex items-center gap-4 px-4 text-sm font-medium
-              text-muted-foreground/50 hover:text-foreground
-              whitespace-nowrap transition-colors duration-150 cursor-default
-              hover:underline underline-offset-4 decoration-muted-foreground/30"
+            className="flex items-center gap-4 px-4
+              text-muted-foreground/50 hover:text-green-400
+              whitespace-nowrap transition-colors duration-150
+              "
           >
             {item}
-            <span className="text-muted-foreground/25 text-xs">{SEPARATOR}</span>
           </span>
         ))}
       </div>

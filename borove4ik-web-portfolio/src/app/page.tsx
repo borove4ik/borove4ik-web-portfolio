@@ -7,8 +7,8 @@ import { Marquee } from "@/components/shared/Marquee"
 // Остальные секции добавляй по мере готовности:
 import { StackSection } from "@/components/sections/Stack"
 import { ProjectsSection } from "@/components/sections/Projects"
-// import { EducationSection } from "@/components/sections/Education"
-// import { CertificationsSection } from "@/components/sections/Certifications"
+import { EducationSection, CertificationsSection } from "@/components/sections/EducationCertifications"
+import { ContactSection } from "@/components/sections/Contact"
 
 export default function Home() {
   return (
@@ -19,7 +19,9 @@ export default function Home() {
         {/* 1. Hero — первый экран */}
         <HeroSection />
 
-        <Marquee />
+        <div className="max-w-2xl mx-auto">
+          <Marquee />
+        </div>
         
         {/* 2. Stack — технологии (раскомментируй когда сделаем) */}
         <StackSection />
@@ -31,10 +33,11 @@ export default function Home() {
         <ExperienceSection />
 
         {/* 5. Education — образование */}
-        {/* <EducationSection /> */}
+        <EducationSection />
 
         {/* 6. Certifications — сертификаты */}
-        {/* <CertificationsSection /> */}
+        <CertificationsSection />
+        <ContactSection />
       </main>
 
       <Footer />

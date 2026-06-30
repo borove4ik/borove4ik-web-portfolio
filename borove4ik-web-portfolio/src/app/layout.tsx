@@ -1,19 +1,8 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/layout/ThemeProvider"
 import "./globals.css"
-import Head from "next/head"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
-
+// Возвращаем метаданные на место — это важно для поиска и рекрутеров
 export const metadata: Metadata = {
   title: "borove4ik",
   description:
@@ -24,7 +13,7 @@ export const metadata: Metadata = {
     title: "Your Name — Frontend Developer",
     description: "Frontend Developer specializing in React, Next.js, TypeScript.",
     type: "website",
-    url: "https://yoursite.com",
+    url: "https://yoursite.com", // Сюда потом вставишь свой домен, когда на прод выкатишь
   },
 }
 
@@ -36,14 +25,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-  />
-</head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        {/* Оставляем Devicon для иконок технологий */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+      </head>
+      {/* Класс antialiased делает шрифты визуально более сглаженными и аккуратными */}
+      <body className="antialiased">
+        {/* Закрываем пропсы ThemeProvider нормально, без сокращений */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

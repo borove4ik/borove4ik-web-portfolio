@@ -32,19 +32,19 @@ export function RippleBackground() {
 
     const onMove = (e: MouseEvent) => {
       const now = Date.now()
-      if (now - lastTimeRef.current < 70) return
+      if (now - lastTimeRef.current < 50) return  // чаще создаём капли
       lastTimeRef.current = now
 
       ripplesRef.current.push({
         x: e.clientX,
         y: e.clientY,
         r: 0,
-        maxR: 55 + Math.random() * 35,
-        alpha: 0.28,
-        speed: 1.1 + Math.random() * 0.9,
+        maxR: 80 + Math.random() * 50,  // больше радиус
+        alpha: 0.6,                      // ярче
+        speed: 1.5 + Math.random() * 1, // быстрее
       })
 
-      if (ripplesRef.current.length > 40) {
+      if (ripplesRef.current.length > 50) {
         ripplesRef.current.shift()
       }
     }
@@ -57,27 +57,27 @@ export function RippleBackground() {
       for (let i = ripplesRef.current.length - 1; i >= 0; i--) {
         const rp = ripplesRef.current[i]
         rp.r += rp.speed
-        rp.alpha *= 0.965
+        rp.alpha *= 0.97  // медленнее затухает
 
-        if (rp.r > rp.maxR || rp.alpha < 0.004) {
+        if (rp.r > rp.maxR || rp.alpha < 0.005) {
           ripplesRef.current.splice(i, 1)
           continue
         }
 
-        // Кольцо-волна
+        // Кольцо-волна — ярче
         ctx.beginPath()
         ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(120, 110, 230, ${rp.alpha * 0.55})`
-        ctx.lineWidth = 1
+        ctx.strokeStyle = `rgba(120, 110, 230, ${rp.alpha * 0.7})`
+        ctx.lineWidth = 1.5
         ctx.stroke()
 
-        // Мягкое заполнение
+        // Заполнение — заметнее
         const grad = ctx.createRadialGradient(
           rp.x, rp.y, rp.r * 0.3,
           rp.x, rp.y, rp.r
         )
         grad.addColorStop(0, `rgba(120, 110, 230, 0)`)
-        grad.addColorStop(0.6, `rgba(120, 110, 230, ${rp.alpha * 0.08})`)
+        grad.addColorStop(0.6, `rgba(120, 110, 230, ${rp.alpha * 0.15})`)
         grad.addColorStop(1, `rgba(120, 110, 230, 0)`)
         ctx.beginPath()
         ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2)

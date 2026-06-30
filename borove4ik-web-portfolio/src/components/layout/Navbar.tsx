@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { useScroll, useMotionValueEvent } from "framer-motion"
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ]
 
+// ─── Переключатель темы ───────────────────────────────────────────────────────
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -23,7 +25,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label="Toggle theme"
-      className="flex items-center justify-center size-9 rounded-lg
+      className="flex items-center justify-center size-9 rounded-lg cursor-pointer
         border border-border/40 text-muted-foreground
         hover:border-border hover:text-foreground hover:bg-muted/40
         transition-all duration-150"
@@ -49,55 +51,133 @@ function ThemeToggle() {
   )
 }
 
+// ─── Бургер иконка ────────────────────────────────────────────────────────────
+function BurgerIcon({ open }: { open: boolean }) {
+  return (
+    <div className="flex flex-col justify-center gap-1.5 w-5 h-5">
+      <motion.span
+        animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block h-px w-full bg-foreground origin-center"
+      />
+      <motion.span
+        animate={open ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 0.15 }}
+        className="block h-px w-full bg-foreground"
+      />
+      <motion.span
+        animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block h-px w-full bg-foreground origin-center"
+      />
+    </div>
+  )
+}
+
+// ─── Navbar ───────────────────────────────────────────────────────────────────
 export function Navbar() {
-  const [hidden, setHidden] = useState(false)
   const [atTop, setAtTop] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const prev = scrollY.getPrevious() ?? 0
-    setHidden(latest > prev && latest > 80)
     setAtTop(latest < 10)
   })
 
   const scrollTo = (href: string) => {
-    const el = document.querySelector(href)
-    el?.scrollIntoView({ behavior: "smooth" })
+    setMenuOpen(false)
+    setTimeout(() => {
+      const el = document.querySelector(href)
+      el?.scrollIntoView({ behavior: "smooth" })
+    }, 300)
   }
 
-  return (
-    <motion.header
-      animate={{ y: hidden ? -80 : 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 h-14
-        flex items-center justify-between px-6
-        transition-all duration-300
-        ${atTop ? "bg-transparent" : "bg-background/80 backdrop-blur-md border-b border-border/40"}`}
-    >
-      {/* Логотип */}
-      <button
-        onClick={() => scrollTo("#hero")}
-        className="font-semibold text-sm text-foreground tracking-tight hover:opacity-70 transition-opacity"
-      >
-        borove4ik<span className="text-muted-foreground"></span>
-      </button>
+  // Блокируем скролл когда меню открыто
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [menuOpen])
 
-      {/* Навигация */}
-      <nav className="hidden md:flex items-center gap-1">
-        {NAV_LINKS.map(({ label, href }) => (
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 h-18
+          flex items-center justify-between px-6
+          transition-all duration-300
+          ${atTop ? "bg-transparent" : "bg-background/80 backdrop-blur-md border-b border-border/40"}`}
+      >
+        {/* Логотип */}
+        <button
+          onClick={() => scrollTo("#hero")}
+          className="font-semibold text-base text-foreground tracking-tight
+            hover:opacity-70 transition-opacity cursor-pointer"
+        >
+          borove4ik
+        </button>
+
+        {/* Навигация десктоп */}
+        <nav className="hidden md:flex items-center gap-1">
+          {NAV_LINKS.map(({ label, href }) => (
+            <button
+              key={href}
+              onClick={() => scrollTo(href)}
+              className="px-3 py-1.5 text-lg text-muted-foreground rounded-md cursor-pointer
+                hover:text-green-400 hover:bg-muted/50
+                transition-all duration-150"
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Правая часть */}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+
+          {/* Бургер — только мобайл */}
           <button
-            key={href}
-            onClick={() => scrollTo(href)}
-            className="px-3 py-1.5 text-sm text-muted-foreground rounded-md
-              hover:text-foreground hover:bg-muted/50
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="flex md:hidden items-center justify-center size-9 rounded-lg cursor-pointer
+              border border-border/40 text-muted-foreground
+              hover:border-border hover:text-foreground hover:bg-muted/40
               transition-all duration-150"
           >
-            {label}
+            <BurgerIcon open={menuOpen} />
           </button>
-        ))}
-      </nav>
+        </div>
+      </header>
 
-      <ThemeToggle />
-    </motion.header>
+      {/* Мобильное меню */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 flex flex-col pt-14
+              bg-background/95 backdrop-blur-md md:hidden"
+          >
+            <nav className="flex flex-col px-6 py-8 gap-1">
+              {NAV_LINKS.map(({ label, href }, i) => (
+                <motion.button
+                  key={href}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06 }}
+                  onClick={() => scrollTo(href)}
+                  className="text-left px-3 py-3 text-lg font-medium text-muted-foreground
+                    rounded-lg hover:text-foreground hover:bg-muted/50
+                    transition-all duration-150 cursor-pointer"
+                >
+                  {label}
+                </motion.button>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
