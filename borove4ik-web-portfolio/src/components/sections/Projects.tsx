@@ -149,12 +149,12 @@ function SectionHeader() {
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="mb-12"
+      className="mb-12 text-center"
     >
-      <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
+      <h2 className="text-3xl md:text-4xl text-center font-semibold text-foreground tracking-tight">
       Projects
       </h2>
-      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md">
+      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md mx-auto">
         Things I've built — pet projects and real products.
       </p>
     </motion.div>

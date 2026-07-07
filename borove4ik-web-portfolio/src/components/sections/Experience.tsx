@@ -61,26 +61,26 @@ function ExperienceRow({ item, index }: { item: ExperienceItem; index: number })
             {item.company.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()}
           </div>
           <div className={`flex-1 min-w-0 ${isLeft ? "" : "md:text-right"}`}>
-            <p className="font-semibold text-foreground leading-tight truncate">{item.company}</p>
-            <p className="text-sm text-muted-foreground">{item.role}</p>
+            <p className="font-semibold text-2xl text-foreground leading-tight truncate">{item.company}</p>
+            <p className="text-xl text-muted-foreground">{item.role}</p>
           </div>
           <span className={`shrink-0 text-[11px] font-medium px-2 py-0.5 rounded-md border ${typeBadge[item.type]}`}>
             {typeLabel[item.type]}
           </span>
         </div>
 
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4">{item.description}</p>
+        <p className="text-lg text-muted-foreground leading-relaxed mb-4">{item.description}</p>
 
         <ul className={`space-y-1.5 ${isLeft ? "" : "md:items-end"} flex flex-col`}>
           {item.achievements.map((ach, i) => (
-            <li key={i} className={`flex items-start gap-2 text-xs text-muted-foreground ${isLeft ? "flex-row" : "md:flex-row-reverse"} flex-row`}>
+            <li key={i} className={`flex items-start gap-2 text-base text-muted-foreground ${isLeft ? "flex-row" : "md:flex-row-reverse"} flex-row`}>
               <span className="mt-1.5 shrink-0 size-1 rounded-full bg-primary/60" />
               <span>{ach}</span>
             </li>
           ))}
         </ul>
 
-        <div className={`mt-4 pt-4 border-t border-border/40 flex items-center gap-2 text-xs text-muted-foreground/60 ${isLeft ? "flex-row" : "md:flex-row-reverse"} flex-row`}>
+        <div className={`mt-4 pt-4 border-t border-border/40 flex items-center gap-2 text-base text-muted-foreground/60 ${isLeft ? "flex-row" : "md:flex-row-reverse"} flex-row`}>
           <span>{item.period}</span>
           {item.duration !== "ongoing" && (
             <><span>·</span><span>{item.duration}</span></>
@@ -117,7 +117,7 @@ function ExperienceRow({ item, index }: { item: ExperienceItem; index: number })
           className={`cursor-default select-none rounded-lg border border-border/40 bg-muted/50 px-3 py-2
             ${isLeft ? "text-left" : "text-right"}`}
         >
-          <p className="text-xs font-medium text-foreground/70 leading-tight">{item.period}</p>
+          <p className="text-lg font-medium text-foreground/70 leading-tight">{item.period}</p>
           {item.duration !== "ongoing" && (
             <p className="text-[11px] text-muted-foreground/50 mt-0.5">{item.duration}</p>
           )}
@@ -155,8 +155,8 @@ function SectionHeader() {
       transition={{ duration: 0.5 }}
       className="mb-16 text-center"
     >
-      <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">Experience </h2>
-      <p className="mt-3 text-muted-foreground max-w-md mx-auto text-sm leading-relaxed">
+      <h2 className="text-3xl md:text-4xl text-center font-semibold text-foreground tracking-tight">Experience </h2>
+      <p className="mt-3 text-muted-foreground mx-auto text-xl leading-relaxed">
         My Professional Path.
       </p>
     </motion.div>

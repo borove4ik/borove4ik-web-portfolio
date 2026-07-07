@@ -30,7 +30,7 @@ export const education: EducationItem[] = [
     degree: "Bachelor's degree",
     field: "Law",
     period: "2014 – 2018",
-    logo: '/images/spbpolytech-logo.png'
+    logo: '/images/polytech.png'
   },
 ]
 

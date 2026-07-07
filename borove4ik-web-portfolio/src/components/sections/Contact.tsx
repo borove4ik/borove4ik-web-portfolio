@@ -16,7 +16,7 @@ const LINKS = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/yourhandle",
+    href: "https://www.linkedin.com/in/borove4ik/",
     color: "#0A66C2",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -26,7 +26,7 @@ const LINKS = [
   },
   {
     label: "Telegram",
-    href: "https://t.me/yourhandle",
+    href: "https://t.me/borove4ik",
     color: "#26A5E4",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -36,7 +36,7 @@ const LINKS = [
   },
   {
     label: "Email",
-    href: "mailto:you@email.com",
+    href: "mailto:dsborovets@gmail.com",
     color: "#EA4335",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

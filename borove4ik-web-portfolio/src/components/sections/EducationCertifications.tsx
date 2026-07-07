@@ -17,7 +17,7 @@ function ExternalLinkIcon() {
 }
 
 // ─── Заголовок блока ──────────────────────────────────────────────────────────
-function BlockHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
+function BlockHeader({ title, eyebrow }: { title: string; eyebrow: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-60px" })
 
@@ -27,14 +27,14 @@ function BlockHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="mb-8"
+      className="mb-8 text-center"
     >
-      <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-2">
-        {eyebrow}
-      </p>
       <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
         {title}
       </h2>
+      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md mx-auto">
+        {eyebrow}
+      </p>
     </motion.div>
   )
 }
@@ -155,7 +155,7 @@ export function EducationSection() {
   return (
     <section id="education" className="py-24 px-6">
       <div className="max-w-2xl mx-auto">
-        <BlockHeader eyebrow="Education" title="Academic background" />
+        <BlockHeader title="Education" eyebrow="Academic background" />
         <div className="flex flex-col gap-3">
           {education.map((item, index) => (
             <EducationCard key={item.id} item={item} index={index} />
