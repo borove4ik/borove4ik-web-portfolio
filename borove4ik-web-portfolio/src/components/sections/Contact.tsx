@@ -217,7 +217,7 @@ export function ContactSection() {
             Contact
             </h2>
             <p className="mt-3 text-muted-foreground text-lg leading-relaxed max-w-sm mx-auto">
-              Open to new opportunities, collaborations, or just a chat. Feel free to reach out.
+            Whether it's a <span className="text-emerald-400">job opportunity</span>, a <span className="text-emerald-400">project</span>, or just a conversation — feel free to reach out.
             </p>
           </div>
 

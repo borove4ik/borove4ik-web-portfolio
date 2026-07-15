@@ -46,14 +46,14 @@ function MessageIcon() {
   )
 }
 
-function PinIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  )
-}
+// function PinIcon() {
+//   return (
+//     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+//       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+//       <circle cx="12" cy="10" r="3" />
+//     </svg>
+//   )
+// }
 
 // ─── Главный компонент ────────────────────────────────────────────────────────
 export function HeroSection() {
@@ -62,7 +62,6 @@ export function HeroSection() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center pt-24 pb-4 overflow-hidden"
     >
-      {/* Эффект капли — работает по всей странице через fixed canvas */}
       <RippleBackground />
 
       {/* Контент поверх canvas */}
@@ -99,9 +98,7 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-       
-
-          {/* CTA кнопки */}
+      
           <motion.div
             variants={item}
             className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2"
