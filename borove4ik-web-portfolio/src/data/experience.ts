@@ -2,7 +2,6 @@ export type ExperienceItem = {
   id: number
   company: string
   role: string
-  type?: "full-time" | "part-time" | "freelance" | "contract"
   period: string
   duration?: string
   description?: string
@@ -60,7 +59,6 @@ export const experiences: ExperienceItem[] = [
     company: "Tessera Mosaic School",
     role: "Frontend Developer",
     period: "Mar 2024 — Jun 2025",
-    type: "part-time",
     description:
       "Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.",
     achievements: [

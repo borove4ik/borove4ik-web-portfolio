@@ -5,20 +5,6 @@ import { motion, useInView } from "framer-motion"
 import { experiences, type ExperienceItem } from "@/data/experience"
 import Image from "next/image"
 
-const typeBadge: Record<ExperienceItem["type"], string> = {
-  "full-time": "bg-primary/10 text-primary border-primary/20",
-  intern: "bg-amber-500/10 text-amber-500 border-amber-500/20",
-  freelance: "bg-violet-500/10 text-violet-500 border-violet-500/20",
-  contract: "bg-cyan-500/10 text-cyan-500 border-cyan-500/20",
-}
-
-const typeLabel: Record<ExperienceItem["type"], string> = {
-  "full-time": "full-time",
-  intern: "intern",
-  freelance: "freelance",
-  contract: "contract",
-}
-
 function ExperienceRow({ item, index }: { item: ExperienceItem; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)
