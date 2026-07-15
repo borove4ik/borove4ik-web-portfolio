@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/layout/ThemeProvider"
+import { ScrollToTop } from "@/components/shared/ScrollToTop"
 import "./globals.css"
 
 // Возвращаем метаданные на место — это важно для поиска и рекрутеров
@@ -42,6 +43,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <ScrollToTop />
       </body>
     </html>
   )

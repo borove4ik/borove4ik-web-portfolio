@@ -6,11 +6,7 @@ import { RippleBackground } from "@/components/shared/RippleBackground"
 // ─── Данные (замени на свои) ──────────────────────────────────────────────────
 const NAME = "Denis Borovets"
 const ROLE = "Frontend Developer"
-const LOCATION = "Kostanay, Kazakhstan"
 const CV_URL = "/frontend__Borovets.pdf"
-const CONTACTS = {
-  email: "mailto:you@email.com",
-}
 
 // ─── Анимации ─────────────────────────────────────────────────────────────────
 const container = {
@@ -64,34 +60,29 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-4 overflow-hidden"
     >
       {/* Эффект капли — работает по всей странице через fixed canvas */}
       <RippleBackground />
 
       {/* Контент поверх canvas */}
-      <div className="relative z-10 max-w-2xl mx-auto w-full">
+      <div className="relative z-10 max-w-2xl mx-auto w-full px-4 text-center md:text-left">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
           className="flex flex-col gap-6"
         >
-          {/* Статус / локация */}
-          <motion.div variants={item} className="flex items-center gap-2">
-            <span className="flex items-center gap-1.5 text-lg text-muted-foreground border border-border/50 rounded-full px-3 py-1">
+
+          <motion.div variants={item} className="flex items-center gap-2 justify-center md:justify-start">
+            <span className="flex items-center gap-1.5 text-base text-muted-foreground border border-border/50 rounded-full px-3 py-1">
               <span className="relative flex size-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full size-1.5 bg-green-500" />
               </span>
               Available for work
             </span>
-            {LOCATION && (
-              <span className="flex items-center gap-1 text-lg text-muted-foreground/60">
-                <PinIcon />
-                {LOCATION}
-              </span>
-            )}
+            
           </motion.div>
 
           {/* Имя */}
@@ -113,7 +104,7 @@ export function HeroSection() {
           {/* CTA кнопки */}
           <motion.div
             variants={item}
-            className="flex flex-wrap items-center gap-3 pt-2"
+            className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2"
           >
             <a
               href={ "#contact" }
@@ -130,7 +121,7 @@ export function HeroSection() {
               download
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
                 border border-border/60 text-foreground text-base font-medium
-                hover:bg-muted/60 active:scale-[0.98] transition-all duration-150"
+                hover:bg-muted/60 hover:text-emerald-400 active:scale-[0.98] transition-all duration-150"
             >
               <DownloadIcon />
               Download CV

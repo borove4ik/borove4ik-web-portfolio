@@ -2,10 +2,10 @@ export type ExperienceItem = {
   id: number
   company: string
   role: string
-  type: "full-time" | "intern" | "freelance" | "contract"
+  type?: "full-time" | "part-time" | "freelance" | "contract"
   period: string
-  duration: string
-  description: string
+  duration?: string
+  description?: string
   achievements: string[]
   logo?: string
 }
@@ -13,62 +13,62 @@ export type ExperienceItem = {
 export const experiences: ExperienceItem[] = [
   {
     id: 1,
-    company: "Your Company",
-    role: "Frontend Engineer",
-    type: "full-time",
-    period: "Jan 2025 — Present",
-    duration: "ongoing",
+    company: "Freelance",
+    role: "Frontend Developer",
+    period: "Jan 2026 — Present",
     description:
-      "Leading frontend architecture and building scalable UI systems for a high-traffic product.",
+      "Codelibs is a web platform for discovering programming books, with filtering by programming language and technology.",
     achievements: [
-      "Reduced bundle size by 40% via code splitting and lazy loading",
-      "Built a reusable design system used across 3 products",
-      "Mentored 2 junior developers",
+      "Fixed UI and application logic issues across existing modules.",
+      "Refactored legacy JavaScript code to improve maintainability and readability.",
+      "Collaborated with other developers through code reviews and technical discussions.",
+      "Contributed to the ongoing development and improvement of the platform."
     ],
   },
   {
     id: 2,
-    company: "Previous Company",
-    role: "Mid Frontend Developer",
-    type: "full-time",
-    period: "Mar 2023 — Jan 2025",
-    duration: "1 yr 10 mos",
+    company: "Kostanay Engineering and Economics University",
+    role: "Frontend Developer",
+    period: "Jan 2025 — Jan 2026",
+    duration: "9 mos",
     description:
-      "Developed and maintained core features of an enterprise SaaS dashboard, migrating from legacy jQuery to React.",
+      "One of the biggest universities in Kostanay",
     achievements: [
-      "Migrated 30+ legacy pages to React without downtime",
-      "Introduced TypeScript, reducing runtime errors by 60%",
-      "Improved Lighthouse score from 54 to 92",
+      "Developed and redesigned corporate website pages, fixed bugs and implemented responsive design for tablets and mobiles, which improved usability for students and teachers.",
+      "Enhanced and optimized student and teacher dashboard interfaces, ensuring a more intuitive and user-friendly experience.",
+      "Developed a job fair web application that enabled student registration and employer visit tracking, used by over 100 participants.",
     ],
+    logo: "/images/keeu.png",
   },
   {
     id: 3,
-    company: "Agency / Studio",
-    role: "Junior Frontend Developer",
-    type: "full-time",
-    period: "Jun 2022 — Mar 2023",
-    duration: "9 mos",
+    company: "ANO 'I Hear You'",
+    role: "Frontend Developer",
+    period: "Sep 2025 — Nov 2025",
     description:
-      "Built client-facing websites and internal tools, collaborating closely with designers in Figma.",
+      "The project focused on supporting people with hearing impairments, allowing them to receive important information and assistance through the Telegram bot.",
     achievements: [
-      "Delivered 12 client projects on schedule",
-      "Set up CI/CD pipeline reducing deploy time by 70%",
-      "Created a component library used in 8 projects",
+      "Built core admin dashboard pages: analytics, user list, bot logic configuration.",
+      "Implemented UI-kit (buttons, inputs, dropdowns, modals).",
+      "Integrated dashboard with backend endpoints: data fetching, state handling, error and loading states.",
+      "Collaborated with backend developers handling bot logic and ensured API contracts."
     ],
+    logo: "/images/i-hear-u.png",
   },
   {
     id: 4,
-    company: "Startup Name",
-    role: "Developer Intern",
-    type: "intern",
-    period: "Jan 2022 — Jun 2022",
-    duration: "6 mos",
+    company: "Tessera Mosaic School",
+    role: "Frontend Developer",
+    period: "Mar 2024 — Jun 2025",
+    type: "part-time",
     description:
-      "First professional experience. Worked on React components, bug fixes, and UI improvements under senior guidance.",
+      "Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.",
     achievements: [
-      "Built 20+ reusable UI components",
+      "Integrated REST API endpoints for courses and authentication.",
       "Learned code review practices and git workflow",
       "Contributed to improving accessibility across the app",
     ],
+    logo: "/images/tessera-art.png"
+
   },
 ]

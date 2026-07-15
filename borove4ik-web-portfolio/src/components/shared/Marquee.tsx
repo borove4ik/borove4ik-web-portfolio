@@ -3,19 +3,17 @@
 import { useRef } from "react"
 
 const ITEMS = [
-  "Building interfaces",
-  "Attention to detail",
-  "Fast & accessible",
-  "Always learning",
-  "Clean code",
-  "Open to work",
-  "Creativity",
-  "Empathy",
-  "Team Work",
-  "Problem Solving"
+ "Building interfaces",
+ "Attention to detail",
+ "Reading the docs",
+ "Always learning",
+ "Clean code",
+ "User-focused",
+ "Refactoring legacy code",
+ "Building side projects",
+ "Open to work",
+ "Frontend first",
 ]
-
-const SEPARATOR = "✦"
 
 const repeated = [...ITEMS, ...ITEMS]
 
@@ -32,23 +30,17 @@ export function Marquee() {
 
   return (
     <div
-      className="relative w-full overflow-hidden  py-4 pt-1"
+      className="relative overflow-hidden pb-23"
       onMouseEnter={pause}
       onMouseLeave={resume}
     >
-      {/* Градиентные маски по краям */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10
-        bg-gradient-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10
-        bg-gradient-to-l from-background to-transparent" />
-
-      {/* Бегущая строка */}
+  
       <div ref={trackRef} className="flex w-max animate-marquee">
         {repeated.map((item, i) => (
           <span
             key={i}
-            className="flex items-center gap-4 px-4
-              text-muted-foreground/50 hover:text-green-400
+            className="flex items-center gap-4 px-4 mt-1
+              text-muted-foreground/50 hover:text-emerald-400
               whitespace-nowrap transition-colors duration-150
               "
           >

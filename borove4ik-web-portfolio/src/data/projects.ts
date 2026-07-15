@@ -5,28 +5,29 @@ export type Project = {
   tags: string[]
   github?: string
   demo?: string
-  status: "live" | "wip" | "archived"
+  image?: string
 }
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Путешествие по России",
+    title: "Traveling around Russia",
     description:
-      "Сайт о путешествии по России — популярные и малоизвестные места, куда стоит съездить или переехать.",
+      "A website about traveling around Russia – popular and little-known places worth visiting or moving to.",
     tags: ["HTML", "CSS"],
     github: "https://github.com/borove4ik/russian-travel",
     demo: "https://borove4ik.github.io/russian-travel/index.html",
-    status: "live",
+    image: "/images/projects/travel.png"
   },
   {
     id: 2,
-    title: "Rent System",
+    title: "Olmo Art & Music",
     description:
-      "Система учёта аренды — панель управления для отслеживания арендаторов, объектов и платежей.",
-    tags: ["Vue.js", "Vite", "Pinia", "Bootstrap"],
-    github: "https://github.com/borove4ik/control-panel",
-    status: "wip",
+      "A personal website for a music artist. Includes a short bio, visuals, and a link to the featured track.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/borove4ik/olmo-art-music",
+    demo: "https://borove4ik.github.io/olmo-art-music/",
+    image: "/images/projects/olmo.png"
   },
   {
     id: 3,
@@ -36,8 +37,17 @@ export const projects: Project[] = [
     tags: ["JavaScript", "HTML", "CSS"],
     github: "https://github.com/borove4ik/mesto",
     demo: "https://borove4ik.github.io/mesto/",
-    status: "live",
+    image: "/images/projects/mesto.png"
   },
+  {
+    id: 4,
+    title: "Tessera Mosaic School",
+    description: "Website for Mosaic Courses that utilizes React and Django. It allows users to view available courses, book them, and access various other features.",
+    tags: ["JavaScript", "React", "SCSS", "HTML", "Docker"],
+    github: "https://github.com/ReneNorth/Mosaic-courses-website",
+    demo: "https://tesseramosaic.art/",
+    image: "/images/projects/mosaic.png"
+  }
 ]
 
 // Добавляй новые проекты по примеру выше.

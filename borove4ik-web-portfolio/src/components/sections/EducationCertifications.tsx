@@ -62,22 +62,22 @@ function EducationCard({ item, index }: { item: (typeof education)[0]; index: nu
          alt={item.institution}
          width={40}
          height={40}
-         className="rounded-lg object-contain"
+         className="h-full object-cover"
         />
       </div>
 
       {/* Контент */}
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 ">
         <div className="flex items-start justify-between gap-2">
           <div>
             <p className="font-medium text-foreground leading-tight">
               {item.institution}
             </p>
-            <p className="text-sm text-muted-foreground mt-0.5">
+            <p className="text-base text-muted-foreground mt-0.5">
               {item.degree} · {item.field}
             </p>
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground/60 mt-0.5">
+          <span className="shrink-0 text-base text-muted-foreground/60 mt-0.5">
             {item.period}
           </span>
         </div>
@@ -121,11 +121,11 @@ function CertCard({ item, index }: { item: (typeof certifications)[0]; index: nu
             <p className="font-medium text-foreground leading-tight">
               {item.issuer}
             </p>
-            <p className="text-sm text-muted-foreground mt-0.5">
+            <p className="text-base text-muted-foreground mt-0.5">
               {item.title}
             </p>
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground/60 mt-0.5">
+          <span className="shrink-0 text-base text-muted-foreground/60 mt-0.5">
             {item.period}
           </span>
         </div>
@@ -140,7 +140,7 @@ function CertCard({ item, index }: { item: (typeof certifications)[0]; index: nu
           aria-label="View certificate"
           className="shrink-0 self-center flex items-center justify-center size-8 rounded-lg
             border border-border/40 text-muted-foreground
-            hover:border-border hover:text-foreground hover:bg-muted/40
+            hover:border-emerald-400/40 hover:text-emerald-400 hover:bg-muted/40
             transition-all duration-150"
         >
           <ExternalLinkIcon />

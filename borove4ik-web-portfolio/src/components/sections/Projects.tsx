@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { projects, type Project } from "@/data/projects"
+import Image from "next/image"
 
 const placeholderGradients = [
   "from-violet-500/20 via-purple-500/10 to-blue-500/20",
@@ -39,10 +40,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       hover:border-border transition-colors duration-300 h-full">
 
       {/* Тип проекта + ссылка — как у него сверху */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border/40">
-        <span className="text-xs font-medium text-muted-foreground">
-          {project.status === "live" ? "Live" : project.status === "wip" ? "In progress" : "Archived"}
-        </span>
+      <div className="flex items-center justify-end px-4 py-3 border-b border-border/40">
         <div className="flex items-center gap-1">
           {project.github && (
             <a
@@ -75,19 +73,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       {/* Превью */}
       <div className="relative flex-1 min-h-90 overflow-hidden bg-muted/20">
-        <div className={`absolute inset-0 bg-gradient-to-br ${gradient}
-          transition-transform duration-500 group-hover:scale-105`} />
+      {project.image ? (
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} ...`} />
+)}
 
         {/* Инициалы заглушка */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-6xl font-semibold text-foreground/[0.06] select-none">
             {project.title.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()}
           </span>
-        </div>
+        </div> */}
 
         {/* Оверлей при ховере */}
         <div className="absolute inset-0 bg-background/92 backdrop-blur-sm
-          opacity-0 group-hover:opacity-100 transition-opacity duration-300
+          opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300
           flex flex-col justify-center px-5 pb-5 gap-3">
           <div>
             <h3 className="font-semibold text-foreground mb-1">{project.title}</h3>
@@ -155,7 +162,7 @@ function SectionHeader() {
       Projects
       </h2>
       <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md mx-auto">
-        Things I've built — pet projects and real products.
+      Code, design, and problem-solving in practice.
       </p>
     </motion.div>
   )

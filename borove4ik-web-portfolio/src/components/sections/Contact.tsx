@@ -1,7 +1,15 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
+import emailjs from "@emailjs/browser"
+
+
+const EMAILJS_SERVICE_ID = "service_kix7tiz"
+const EMAILJS_TEMPLATE_ID = "template_flmnk9x"
+const EMAILJS_PUBLIC_KEY = "HCAksCKjFwUFsMVIa"
+
+const MAX_MESSAGE_LENGTH = 300
 
 const LINKS = [
   {
@@ -46,6 +54,149 @@ const LINKS = [
   },
 ]
 
+// ─── Форма ────────────────────────────────────────────────────────────────────
+function ContactForm() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [errorMsg, setErrorMsg] = useState("")
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+
+  const handleSubmit = async () => {
+    if (!name || !email || !message) return
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setErrorMsg("Please enter a valid email address.")
+      setTimeout(() => setErrorMsg(""), 3000)
+      return
+    }
+  
+    setErrorMsg("")
+    setStatus("sending")
+  
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        { from_name: name, from_email: email, message },
+        EMAILJS_PUBLIC_KEY
+      )
+      setStatus("success")
+      setTimeout(() => setStatus("idle"), 3000)
+      setName("")
+      setEmail("")
+      setMessage("")
+    } catch {
+      setStatus("error")
+      setTimeout(() => setStatus("idle"), 3000)
+    }
+  }
+
+  const inputClass = `w-full px-4 py-3 rounded-lg text-base
+    bg-muted/30 border border-border/40 text-foreground
+    placeholder:text-muted-foreground/40
+    focus:outline-none focus:border-border focus:bg-muted/50
+    transition-all duration-150`
+
+  return (
+    <div className="w-full flex flex-col gap-4">
+      {/* Имя */}
+      <div className="flex flex-col gap-1.5">
+        <label className="text-lg font-medium text-muted-foreground">
+          Name <span className="text-muted-foreground/50">*</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className={inputClass}
+        />
+      </div>
+
+      {/* Email */}
+      <div className="flex flex-col gap-1.5">
+        <label className="text-lg font-medium text-muted-foreground">
+          E-mail <span className="text-muted-foreground/50">*</span>
+        </label>
+        <input
+          type="email"
+          placeholder="Your e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={inputClass}
+        />
+      </div>
+
+      {/* Сообщение */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-between">
+          <label className="text-lg font-medium text-muted-foreground">
+            Message <span className="text-muted-foreground/50">*</span>
+          </label>
+          <span className="text-base text-muted-foreground/40">
+            {message.length} / {MAX_MESSAGE_LENGTH}
+          </span>
+        </div>
+        <textarea
+          placeholder="Your message"
+          value={message}
+          onChange={(e) => {
+            if (e.target.value.length <= MAX_MESSAGE_LENGTH) {
+              setMessage(e.target.value)
+            }
+          }}
+          rows={5}
+          className={`${inputClass} resize-none`}
+        />
+      </div>
+
+      {/* Кнопка отправки */}
+      <div className="flex justify-end">
+        <button
+          onClick={handleSubmit}
+          disabled={status === "sending" || !name || !email || !message}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+            bg-foreground text-background text-lg font-medium
+            hover:opacity-90 active:scale-[0.98]
+            disabled:opacity-40 disabled:cursor-not-allowed
+            transition-all duration-150 cursor-pointer"
+        >
+          {status === "sending" ? (
+            <>
+              <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+              </svg>
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Message
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Статус */}
+      {errorMsg && (
+        <p className="text-base text-red-500 text-center">{errorMsg}</p>
+      )}
+      {status === "success" && (
+        <p className="text-base text-emerald-500 text-center">
+          Message sent! I'll get back to you soon.
+        </p>
+      )}
+      {status === "error" && !errorMsg && (
+        <p className="text-base text-red-500 text-center">
+          Something went wrong. Try again or reach out directly.
+        </p>
+     )}
+    </div>
+  )
+}
+
+// ─── Главный компонент ────────────────────────────────────────────────────────
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-60px" })
@@ -62,15 +213,17 @@ export function ContactSection() {
         >
           {/* Заголовок */}
           <div>
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground mb-3">
-              
-            </p>
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
             Contact
             </h2>
             <p className="mt-3 text-muted-foreground text-lg leading-relaxed max-w-sm mx-auto">
               Open to new opportunities, collaborations, or just a chat. Feel free to reach out.
             </p>
+          </div>
+
+          {/* Форма */}
+          <div className="w-full text-left">
+            <ContactForm />
           </div>
 
           {/* Иконки соцсетей */}

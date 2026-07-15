@@ -136,7 +136,7 @@ function SectionHeader() {
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="mb-12 "
+      className="mb-12"
     >
       <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
       Stack

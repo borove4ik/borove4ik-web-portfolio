@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useScroll, useMotionValueEvent } from "framer-motion"
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
+  { label: "Stack", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
@@ -122,7 +122,7 @@ export function Navbar() {
               key={href}
               onClick={() => scrollTo(href)}
               className="px-3 py-1.5 text-lg text-muted-foreground rounded-md cursor-pointer
-                hover:text-green-400 hover:bg-muted/50
+                hover:text-emerald-400 hover:bg-muted/50
                 transition-all duration-150"
             >
               {label}
