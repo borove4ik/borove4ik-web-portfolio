@@ -88,8 +88,8 @@ function StackIcon({ item, index }: { item: StackItem; index: number }) {
       >
         <i
           className={`${item.icon} colored text-3xl
-            grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100
-            transition-all duration-200`}
+          grayscale-0 opacity-100 md:grayscale md:opacity-40 md:group-hover:grayscale-0 md:group-hover:opacity-100
+          transition-all duration-200`}
           aria-hidden="true"
         />
       </div>

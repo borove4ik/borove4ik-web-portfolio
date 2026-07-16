@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noopener noreferrer"
               aria-label="GitHub"
               className="flex items-center justify-center size-7 rounded-md
-                text-muted-foreground hover:text-foreground hover:bg-muted/50
+                text-muted-foreground hover:text-emerald-400 hover:bg-muted/50
                 transition-all duration-150"
             >
               <GithubIcon />
@@ -62,7 +62,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noopener noreferrer"
               aria-label="Open project"
               className="flex items-center justify-center size-7 rounded-md
-                text-muted-foreground hover:text-foreground hover:bg-muted/50
+                text-muted-foreground hover:text-emerald-400 hover:bg-muted/50
                 transition-all duration-150"
             >
               <ExternalLinkIcon />
@@ -135,7 +135,7 @@ function ProjectRow({
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay: rowIndex * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       style={{ top: topOffset, zIndex: rowIndex + 1 }}
-      className="sticky grid grid-cols-1 sm:grid-cols-2 gap-4"
+      className="sm:sticky grid grid-cols-1 sm:grid-cols-2 gap-4"
     >
       {pair.map((project, i) => (
         <ProjectCard key={project.id} project={project} index={rowIndex * 2 + i} />

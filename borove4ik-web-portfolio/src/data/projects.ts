@@ -33,7 +33,7 @@ export const projects: Project[] = [
     id: 3,
     title: "Mesto",
     description:
-      "Интерактивная веб-страница для публикации фотографий с возможностью ставить лайки, удалять фото и регистрировать пользователя.",
+      "An interactive web page for posting photos with the ability to like, delete, and register a user.",
     tags: ["JavaScript", "HTML", "CSS"],
     github: "https://github.com/borove4ik/mesto",
     demo: "https://borove4ik.github.io/mesto/",

@@ -217,7 +217,7 @@ export function ContactSection() {
             Contact
             </h2>
             <p className="mt-3 text-muted-foreground text-lg leading-relaxed max-w-sm mx-auto">
-            Whether it's a <span className="text-emerald-400">job opportunity</span>, a <span className="text-emerald-400">project</span>, or just a conversation — feel free to reach out.
+            Whether it's a <span className="text-emerald-400">job opportunity</span>, a <span className="text-emerald-400">project</span>, or just a conversation, feel free to reach out.
             </p>
           </div>
 
@@ -241,7 +241,8 @@ export function ContactSection() {
                 whileHover={{ y: -3 }}
                 style={{ "--brand-color": color } as React.CSSProperties}
                 className="flex items-center justify-center size-12 rounded-xl
-                  border border-border/40 text-muted-foreground
+                  border border-border/40
+                  text-[var(--brand-color)] md:text-muted-foreground
                   hover:border-border hover:bg-muted/30
                   hover:text-[var(--brand-color)]
                   transition-colors duration-200"

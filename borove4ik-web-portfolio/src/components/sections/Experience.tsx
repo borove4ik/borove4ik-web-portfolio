@@ -42,7 +42,7 @@ function ExperienceRow({ item, index }: { item: ExperienceItem; index: number })
         onMouseEnter={() => { setIsHovered(true); activateDot() }}
         onMouseLeave={() => { setIsHovered(false); deactivateDot() }}
         className={`group relative w-full md:w-[calc(50%-2rem)] rounded-xl border border-border/50 bg-card p-6
-          hover:border-border hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20
+          hover:border-border  hover:bg-emerald-500/5 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20
           transition-all duration-300 ${isLeft ? "md:text-left" : "md:text-right"}`}
       >
         <div className={`absolute top-8 hidden md:block h-px w-8 bg-border/60 ${isLeft ? "-right-8" : "-left-8"}`} />
@@ -119,7 +119,7 @@ function ExperienceRow({ item, index }: { item: ExperienceItem; index: number })
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           onMouseEnter={() => { setIsHovered(true); activateDot() }}
           onMouseLeave={() => { setIsHovered(false); deactivateDot() }}
-          className={`cursor-default select-none rounded-lg border border-border/40 bg-muted/50 px-3 py-2
+          className={`cursor-default hover:bg-emerald-500/5 hover:border-emerald-500/30 select-none rounded-lg border border-border/40 bg-muted/50 px-3 py-2
             ${isLeft ? "text-left" : "text-right"}`}
         >
           <p className="text-lg font-medium text-foreground/70 leading-tight">{item.period}</p>
