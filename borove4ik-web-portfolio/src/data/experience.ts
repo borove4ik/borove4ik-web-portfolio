@@ -29,7 +29,6 @@ export const experiences: ExperienceItem[] = [
     company: "Kostanay Engineering and Economics University",
     role: "Frontend Developer",
     period: "Jan 2025 — Jan 2026",
-    duration: "9 mos",
     description:
       "One of the biggest universities in Kostanay",
     achievements: [
