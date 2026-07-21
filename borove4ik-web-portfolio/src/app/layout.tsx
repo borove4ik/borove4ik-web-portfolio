@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Frontend Developer specializing in React, Next.js, TypeScript and Tailwind CSS.",
   keywords: ["Frontend", "React", "Next.js", "TypeScript", "Portfolio"],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Denis Borovets" }],
   openGraph: {
     title: "Denis Borovets — Frontend Developer",
     description: "Frontend Developer specializing in React, Next.js, TypeScript.",
