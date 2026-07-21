@@ -39,7 +39,7 @@ export function RippleBackground() {
         x: e.clientX,
         y: e.clientY,
         r: 0,
-        maxR: 80 + Math.random() * 50,  // больше радиус
+        maxR: 70 + Math.random() * 50,  // больше радиус
         alpha: 0.6,                      // ярче
         speed: 1.5 + Math.random() * 1, // быстрее
       })
@@ -67,8 +67,8 @@ export function RippleBackground() {
         // Кольцо-волна — ярче
         ctx.beginPath()
         ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(120, 110, 230, ${rp.alpha * 0.7})`
-        ctx.lineWidth = 1.5
+        ctx.strokeStyle = `rgba(16, 185, 129, ${rp.alpha * 0.2})`
+        ctx.lineWidth = 0.3
         ctx.stroke()
 
         // Заполнение — заметнее
@@ -76,9 +76,9 @@ export function RippleBackground() {
           rp.x, rp.y, rp.r * 0.3,
           rp.x, rp.y, rp.r
         )
-        grad.addColorStop(0, `rgba(120, 110, 230, 0)`)
-        grad.addColorStop(0.6, `rgba(120, 110, 230, ${rp.alpha * 0.15})`)
-        grad.addColorStop(1, `rgba(120, 110, 230, 0)`)
+        grad.addColorStop(0, `rgba(16, 185, 129, ${rp.alpha * 0.3})`)
+        grad.addColorStop(0.6, `rgba(16, 185, 129, ${rp.alpha * 0.04})`)
+        grad.addColorStop(1, `rgba(16, 185, 129, ${rp.alpha * 0.5})`)
         ctx.beginPath()
         ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2)
         ctx.fillStyle = grad

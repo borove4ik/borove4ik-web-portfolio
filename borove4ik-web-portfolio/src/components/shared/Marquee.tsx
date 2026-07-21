@@ -39,7 +39,7 @@ export function Marquee() {
         {repeated.map((item, i) => (
           <span
             key={i}
-            className="flex items-center gap-4 px-4 mt-1 text-lg
+            className="flex items-center gap-4 px-4 mt-1 text-xl font-bold
               text-muted-foreground/50 hover:text-emerald-400
               whitespace-nowrap transition-colors duration-150
               "

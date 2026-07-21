@@ -213,10 +213,10 @@ export function ContactSection() {
         >
           {/* Заголовок */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
             Contact
             </h2>
-            <p className="mt-3 text-muted-foreground text-lg leading-relaxed max-w-sm mx-auto">
+            <p className="mt-3 text-muted-foreground font-semibold text-lg leading-relaxed max-w-sm mx-auto">
             Whether it's a <span className="text-emerald-400">job opportunity</span>, a <span className="text-emerald-400">project</span>, or just a conversation, feel free to reach out.
             </p>
           </div>

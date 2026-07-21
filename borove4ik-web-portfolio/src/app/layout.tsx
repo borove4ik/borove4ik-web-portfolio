@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   keywords: ["Frontend", "React", "Next.js", "TypeScript", "Portfolio"],
   authors: [{ name: "Your Name" }],
   openGraph: {
-    title: "Your Name — Frontend Developer",
+    title: "Denis Borovets — Frontend Developer",
     description: "Frontend Developer specializing in React, Next.js, TypeScript.",
     type: "website",
-    url: "https://yoursite.com", // Сюда потом вставишь свой домен, когда на прод выкатишь
+    url: "https://borove4ik.vercel.app/", // Сюда потом вставишь свой домен, когда на прод выкатишь
   },
 }
 

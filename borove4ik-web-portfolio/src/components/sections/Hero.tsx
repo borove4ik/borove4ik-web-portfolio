@@ -49,15 +49,6 @@ function MessageIcon() {
   )
 }
 
-// function PinIcon() {
-//   return (
-//     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-//       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-//       <circle cx="12" cy="10" r="3" />
-//     </svg>
-//   )
-// }
-
 // ─── Главный компонент ────────────────────────────────────────────────────────
 export function HeroSection() {
   return (
@@ -89,18 +80,23 @@ export function HeroSection() {
 
           {/* Имя */}
           <motion.div variants={item}>
-            <h1 className="text-5xl sm:text-6xl font-semibold tracking-tight text-foreground leading-none">
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-foreground leading-none">
               {NAME}
             </h1>
           </motion.div>
 
           {/* Должность */}
           <motion.div variants={item}>
-            <p className="text-2xl sm:text-3xl font-medium text-muted-foreground tracking-tight">
+            <p className="text-4xl sm:text-3xl font-semibold text-emerald-400 tracking-tight">
               {ROLE}
             </p>
           </motion.div>
 
+          <motion.div variants={item}>
+            <p className="text-lg text-muted-foreground/80 font-medium leading-relaxed max-w-md">
+              Former lawyer turned Frontend Developer. I enjoy building modern web applications and have always been fascinated by beautifully designed and functional digital products.
+            </p>
+          </motion.div>
       
           <motion.div
             variants={item}

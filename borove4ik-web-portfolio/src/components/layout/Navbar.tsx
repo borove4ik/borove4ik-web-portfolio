@@ -78,11 +78,38 @@ function BurgerIcon({ open }: { open: boolean }) {
 export function Navbar() {
   const [atTop, setAtTop] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("")
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setAtTop(latest < 10)
   })
+
+  // ─── Scroll spy ───────────────────────────────────────────────────────────
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((l) => l.href.replace("#", ""))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection("#" + entry.target.id)
+          }
+        })
+      },
+      {
+        rootMargin: "-40% 0px -55% 0px", // секция считается активной когда в центре экрана
+        threshold: 0,
+      }
+    )
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   const scrollTo = (href: string) => {
     setMenuOpen(false)
@@ -92,7 +119,6 @@ export function Navbar() {
     }, 300)
   }
 
-  // Блокируем скролл когда меню открыто
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
@@ -107,34 +133,46 @@ export function Navbar() {
           ${atTop ? "bg-transparent" : "bg-background/80 backdrop-blur-md border-b border-border/40"}`}
       >
         {/* Логотип */}
-        <button
-          onClick={() => scrollTo("#hero")}
-          className="font-semibold text-base text-foreground tracking-tight
-            hover:opacity-70 transition-opacity cursor-pointer"
+        <span
+          className="font-semibold text-base text-foreground tracking-tight"
         >
           borove4ik
-        </button>
+        </span>
 
         {/* Навигация десктоп */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ label, href }) => (
-            <button
-              key={href}
-              onClick={() => scrollTo(href)}
-              className="px-3 py-1.5 text-lg text-muted-foreground rounded-md cursor-pointer
-                hover:text-emerald-400 hover:bg-muted/50
-                transition-all duration-150"
-            >
-              {label}
-            </button>
-          ))}
+          {NAV_LINKS.map(({ label, href }) => {
+            const isActive = activeSection === href
+            return (
+              <button
+                key={href}
+                onClick={() => scrollTo(href)}
+                className={`relative px-3 py-1.5 text-lg rounded-md cursor-pointer
+                  transition-all duration-150
+                  ${isActive
+                    ? "text-emerald-400"
+                    : "text-muted-foreground hover:text-emerald-400 hover:bg-muted/50"
+                  }`}
+              >
+                {label}
+
+                {/* Изумрудная линия снизу активного пункта */}
+                {isActive && (
+                  <motion.span
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-3 right-3 h-px bg-emerald-400 rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </button>
+            )
+          })}
         </nav>
 
         {/* Правая часть */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
 
-          {/* Бургер — только мобайл */}
           <button
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -160,20 +198,26 @@ export function Navbar() {
               bg-background/95 backdrop-blur-md md:hidden"
           >
             <nav className="flex flex-col px-6 py-8 gap-1">
-              {NAV_LINKS.map(({ label, href }, i) => (
-                <motion.button
-                  key={href}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  onClick={() => scrollTo(href)}
-                  className="text-left px-3 py-3 text-lg font-medium text-muted-foreground
-                    rounded-lg hover:text-foreground hover:bg-muted/50
-                    transition-all duration-150 cursor-pointer"
-                >
-                  {label}
-                </motion.button>
-              ))}
+              {NAV_LINKS.map(({ label, href }, i) => {
+                const isActive = activeSection === href
+                return (
+                  <motion.button
+                    key={href}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                    onClick={() => scrollTo(href)}
+                    className={`text-left px-3 py-3 text-lg font-semibold rounded-lg
+                      transition-all duration-150 cursor-pointer
+                      ${isActive
+                        ? "text-emerald-400 bg-emerald-400/5"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
+                  >
+                    {label}
+                  </motion.button>
+                )
+              })}
             </nav>
           </motion.div>
         )}

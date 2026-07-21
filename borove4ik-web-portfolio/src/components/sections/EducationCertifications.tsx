@@ -29,10 +29,10 @@ function BlockHeader({ title, eyebrow }: { title: string; eyebrow: string }) {
       transition={{ duration: 0.5 }}
       className="mb-8 text-center"
     >
-      <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
         {title}
       </h2>
-      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md mx-auto">
+      <p className="mt-3 text-muted-foreground font-semibold text-xl leading-relaxed max-w-md mx-auto">
         {eyebrow}
       </p>
     </motion.div>
@@ -70,7 +70,7 @@ function EducationCard({ item, index }: { item: (typeof education)[0]; index: nu
       <div className="flex-1 ">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="font-medium text-foreground leading-tight">
+            <p className="font-bold text-foreground leading-tight">
               {item.institution}
             </p>
             <p className="text-base text-muted-foreground mt-0.5">
@@ -97,7 +97,7 @@ function CertCard({ item, index }: { item: (typeof certifications)[0]; index: nu
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group flex gap-4 p-5 rounded-xl
+      className="group flex gap-4 p-5 font-semibold rounded-xl
         border border-border/40 bg-card
         hover:border-border transition-all duration-300"
     >
@@ -118,7 +118,7 @@ function CertCard({ item, index }: { item: (typeof certifications)[0]; index: nu
       <div className="flex-1 min-w-0">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="font-medium text-foreground leading-tight">
+            <p className="font-bold text-foreground leading-tight">
               {item.issuer}
             </p>
             <p className="text-base text-muted-foreground mt-0.5">

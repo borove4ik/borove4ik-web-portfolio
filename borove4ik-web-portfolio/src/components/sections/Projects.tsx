@@ -158,10 +158,10 @@ function SectionHeader() {
       transition={{ duration: 0.5 }}
       className="mb-12 text-center"
     >
-      <h2 className="text-3xl md:text-4xl text-center font-semibold text-foreground tracking-tight">
+      <h2 className="text-3xl md:text-4xl text-center font-bold text-foreground tracking-tight">
       Projects
       </h2>
-      <p className="mt-3 text-muted-foreground text-xl leading-relaxed max-w-md mx-auto">
+      <p className="mt-3 text-muted-foreground font-semibold text-xl leading-relaxed max-w-md mx-auto">
       Code, design, and problem-solving in practice.
       </p>
     </motion.div>
