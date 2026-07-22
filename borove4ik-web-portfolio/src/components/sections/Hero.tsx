@@ -87,15 +87,20 @@ export function HeroSection() {
 
           {/* Должность */}
           <motion.div variants={item}>
-            <p className="text-4xl sm:text-3xl font-semibold text-emerald-400 tracking-tight">
+            <p className="text-4xl sm:text-3xl font-bold text-emerald-400 tracking-tight">
               {ROLE}
             </p>
           </motion.div>
 
-          <motion.div variants={item}>
-            <p className="text-lg text-muted-foreground/80 font-medium leading-relaxed max-w-md">
-              Former lawyer turned Frontend Developer. I enjoy building modern web applications and have always been fascinated by beautifully designed and functional digital products.
-            </p>
+          <motion.div variants={item} className="flex flex-col gap-2">
+            <div className="max-w-sm">
+              <p className="text-lg font-semibold leading-relaxed">
+                Former lawyer turned Frontend Developer.
+              </p>
+              <p className="text-base text-muted-foreground/80 mt-3">
+                Passionate about building modern web applications and creating digital products that are both functional and enjoyable to use.
+              </p>
+            </div>
           </motion.div>
       
           <motion.div
