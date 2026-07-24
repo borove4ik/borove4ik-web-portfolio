@@ -93,7 +93,7 @@ export function HeroSection() {
           </motion.div>
 
           <motion.div variants={item} className="flex flex-col gap-2">
-            <div className="max-w-sm">
+            <div className="max-w-sm mx-auto md:mx-0">
               <p className="text-lg font-semibold leading-relaxed">
                 Former lawyer turned Frontend Developer.
               </p>
