@@ -133,16 +133,19 @@ export function Navbar() {
           ${atTop ? "bg-transparent" : "bg-background/80 backdrop-blur-md border-b border-border/40"}`}
       >
         {/* Логотип */}
-        <span
-          className="font-semibold text-base text-foreground tracking-tight"
-        >
-          borove4ik
-        </span>
+        <button
+            onClick={() => scrollTo("#hero")}
+            className={`font-semibold text-base tracking-tight
+              transition-all cursor-pointer
+              ${atTop ? "text-emerald-400" : "text-foreground hover:text-emerald-400"}`}
+          >
+            borove4ik
+        </button>
 
         {/* Навигация десктоп */}
         <nav className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ label, href }) => {
-            const isActive = activeSection === href
+            const isActive = activeSection === href && !atTop
             return (
               <button
                 key={href}
@@ -199,7 +202,7 @@ export function Navbar() {
           >
             <nav className="flex flex-col px-6 py-8 gap-1">
               {NAV_LINKS.map(({ label, href }, i) => {
-                const isActive = activeSection === href
+                const isActive = activeSection === href && !atTop 
                 return (
                   <motion.button
                     key={href}
