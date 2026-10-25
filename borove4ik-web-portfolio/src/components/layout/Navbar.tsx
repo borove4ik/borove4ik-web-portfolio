@@ -5,6 +5,12 @@ import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 import { useScroll, useMotionValueEvent } from "framer-motion"
 
+declare global {
+  interface Document {
+    startViewTransition?: (callback: () => Promise<void> | void) => { ready: Promise<void> }
+  }
+}
+
 const NAV_LINKS = [
   { label: "Stack", href: "#about" },
   { label: "Projects", href: "#projects" },
@@ -23,7 +29,20 @@ function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    onClick={() => {
+      const next = theme === "dark" ? "light" : "dark"
+    
+      if (!document.startViewTransition) {
+        setTheme(next)
+        return
+      }
+    
+      document.startViewTransition(() => {
+        document.documentElement.classList.remove("dark", "light")
+        document.documentElement.classList.add(next)
+        setTheme(next)
+      })
+    }}
       aria-label="Toggle theme"
       className="flex items-center justify-center size-9 rounded-lg cursor-pointer
         border border-border/40 text-muted-foreground

@@ -140,3 +140,26 @@
   }
 
 }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 1s !important;
+  animation-timing-function: ease-in-out !important;
+}
+
+::view-transition-new(root) {
+  animation-name: reveal !important;
+}
+
+::view-transition-old(root) {
+  animation: none !important;
+}
+
+@keyframes reveal {
+  from {
+    clip-path: circle(0% at 50% 50%);
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+  }
+}
