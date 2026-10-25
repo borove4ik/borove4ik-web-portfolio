@@ -5,11 +5,7 @@ import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 import { useScroll, useMotionValueEvent } from "framer-motion"
 
-declare global {
-  interface Document {
-    startViewTransition?: (callback: () => Promise<void> | void) => { ready: Promise<void> }
-  }
-}
+
 
 const NAV_LINKS = [
   { label: "Stack", href: "#about" },
@@ -32,12 +28,12 @@ function ThemeToggle() {
     onClick={() => {
       const next = theme === "dark" ? "light" : "dark"
     
-      if (!document.startViewTransition) {
+      if (!(document as any).startViewTransition) {
         setTheme(next)
         return
       }
     
-      document.startViewTransition(() => {
+      ;(document as any).startViewTransition(() => {
         document.documentElement.classList.remove("dark", "light")
         document.documentElement.classList.add(next)
         setTheme(next)
